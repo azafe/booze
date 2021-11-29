@@ -12,11 +12,8 @@ class Clubs extends StatelessWidget {
           centerTitle: true,
           title: Text('BoozApp'),
         ),
-        body: GridView.count(
+        body: ListView(
           padding: EdgeInsets.only(right: 20, left: 20, top: 5),
-          mainAxisSpacing: 30,
-          crossAxisCount: 1,
-          childAspectRatio: 4,
           children: <Widget>[
             ListTile(
               title: Text("Patagonia Sheraton"),
