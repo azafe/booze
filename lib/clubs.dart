@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:booze/pages/bar_irlanda.dart';
 import 'package:flutter/material.dart';
 
 class Clubs extends StatelessWidget {
@@ -12,12 +13,28 @@ class Clubs extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.purple,
           centerTitle: true,
-          title: Text('BoozApp'),
+          leading: BackButton(),
+          title: Text(
+            'BoozApp',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+          ),
         ),
         body: ListView(
           scrollDirection: Axis.vertical,
           padding: EdgeInsets.all(20), //(right: 20, left: 20, top: 5),
           children: <Widget>[
+            Padding(
+                padding: EdgeInsets.only(top: 1, bottom: 10),
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Bares Tucumán",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
+                  ),
+                )),
             patagoniaSheraton(),
             barIrlanda(),
             pollock(),
@@ -96,6 +113,66 @@ Widget barIrlanda() {
             height: 150,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20), color: Colors.black12),
+          ),
+          Container(
+            width: double.infinity,
+            height: 150,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20), color: Colors.black26),
+          ),
+          Container(
+            width: double.infinity,
+            height: 150,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20), color: Colors.black12),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  top: 10, right: 8, bottom: 10, left: 270),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Icon(
+                        Icons.more_vert,
+                        color: Colors.white,
+                        size: 26,
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        width: 70,
+                        height: 30,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.white38),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Icon(
+                              Icons.favorite_border,
+                              color: Colors.white,
+                              size: 25,
+                            ),
+                            Text(
+                              "5.6k",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
           )
         ]),
         decoration: BoxDecoration(
