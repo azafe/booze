@@ -1,13 +1,27 @@
 import 'dart:ui';
 
+import 'package:booze/models/pub.dart';
 import 'package:booze/pages/bar_irlanda.dart';
 import 'package:flutter/material.dart';
 
-class Clubs extends StatelessWidget {
+import 'pages/pub_summary_widget.dart';
+
+class Clubs extends StatefulWidget {
   const Clubs({Key? key}) : super(key: key);
 
   @override
+  _ClubsState createState() => _ClubsState();
+}
+
+class _ClubsState extends State<Clubs> {
+  @override
   Widget build(BuildContext context) {
+    var pubs = [
+      Pub(12, "Irlanda", "assets/images/bar_irlanda.jpg"),
+      Pub(13, "Patagonia Sheraton", "assets/images/1.png"),
+      Pub(14, "Pollock", "assets/images/pollock.jpg")
+    ];
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -19,28 +33,20 @@ class Clubs extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
           ),
         ),
-        body: ListView(
-          scrollDirection: Axis.vertical,
-          padding: EdgeInsets.all(20), //(right: 20, left: 20, top: 5),
-          children: <Widget>[
-            Padding(
-                padding: EdgeInsets.only(top: 1, bottom: 10),
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Bares Tucumán",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25),
-                  ),
-                )),
-            patagoniaSheraton(),
-            barIrlanda(),
-            pollock(),
-            patagoniaHilton(),
-          ],
-        ),
+        body: ListView.builder(
+            itemCount: pubs.length,
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              PubShop(pub: pubs.elementAt(index))));
+                },
+                child: PubSummary(pub: pubs.elementAt(index)),
+              );
+            }),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
@@ -151,23 +157,21 @@ Widget barIrlanda() {
                             borderRadius: BorderRadius.circular(30),
                             color: Colors.white38),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Icon(
-                              Icons.favorite_border,
-                              color: Colors.white,
-                              size: 25,
-                            ),
-                            Text(
-                              "5.6k",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
-                            )
-                          ],
-                        ),
-                      ),
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.red),
+                                  child: Text(
+                                    "Touch Me",
+                                  ),
+                                ),
+                              ),
+                            ]),
+                      )
                     ],
                   )
                 ],
