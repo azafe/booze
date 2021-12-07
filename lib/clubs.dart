@@ -19,7 +19,8 @@ class _ClubsState extends State<Clubs> {
     var pubs = [
       Pub(12, "Irlanda", "assets/images/bar_irlanda.jpg"),
       Pub(13, "Patagonia Sheraton", "assets/images/1.png"),
-      Pub(14, "Pollock", "assets/images/pollock.jpg")
+      Pub(14, "Pollock", "assets/images/pollock.jpg"),
+      Pub(15, "Yummy's", "assets/images/patagonia_hilton.jpg")
     ];
 
     return Scaffold(
