@@ -1,7 +1,6 @@
 import 'package:booze/models/pub.dart';
 import 'package:booze/pages/shop.dart';
 import 'package:flutter/material.dart';
-import 'package:booze/models/drink.dart';
 
 class PubShop extends StatelessWidget {
   const PubShop({
