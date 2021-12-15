@@ -16,26 +16,22 @@ class Clubs extends StatefulWidget {
 class _ClubsState extends State<Clubs> {
   @override
   Widget build(BuildContext context) {
-    var pubs = [
-      Pub(12, "Irlanda", "assets/images/bar_irlanda.jpg"),
-      Pub(13, "Patagonia Sheraton", "assets/images/1.png"),
-      Pub(14, "Pollock", "assets/images/pollock.jpg"),
-      Pub(15, "Yummy's", "assets/images/patagonia_hilton.jpg")
-    ];
-
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: Colors.purple,
           centerTitle: true,
-          leading: BackButton(),
+          leading: IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.star))],
           title: Text(
             'BoozApp',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
           ),
         ),
         body: ListView.builder(
+            scrollDirection: Axis.horizontal,
             itemCount: pubs.length,
+            physics: BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {

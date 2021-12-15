@@ -1,16 +1,19 @@
+import 'package:booze/helpers/counter.dart';
 import 'package:booze/models/drink.dart';
 import 'package:booze/models/pub.dart';
 import 'package:booze/pages/visual_elements/item_preview.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(Test());
-
 class Test extends StatefulWidget {
+  Test({Key? key, required this.pub}) : super(key: key);
+
+  final Pub pub;
+
   @override
   _TestState createState() => _TestState();
 }
 
-class _TestState extends State<Test> {  
+class _TestState extends State<Test> {
   List<Drink> _drinks = [
     Drink("Heineken", "300", "assets/images/drinks/heineken.png"),
     Drink("Andes Ipa", "420", "assets/images/drinks/andes_ipa.png"),
@@ -25,10 +28,10 @@ class _TestState extends State<Test> {
           backgroundColor: Colors.red,
           leading: BackButton(),
           centerTitle: true,
-          title: Text("Drink Shop"),
+          title: Text(widget.pub.name),
         ),
         body: Container(
-          height: 380,
+          height: 500,
           child: Column(children: [
             Expanded(
                 child: ListView.builder(
@@ -39,7 +42,17 @@ class _TestState extends State<Test> {
                         padding: const EdgeInsets.all(10.0),
                         child: Card3d(drink: _drinks[index]),
                       );
-                    }))
+                    })),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: () => Navigator.pushNamed(context, 'cartscreen'),
+                    child: Text("Ver mi pedido")),
+              ),
+            ),
           ]),
         ));
   }
@@ -79,31 +92,7 @@ class Card3d extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: PhysicalModel(
-              color: Colors.purple,
-              elevation: 5,
-              borderRadius: border,
-              child: Container(
-                alignment: Alignment.center,
-                width: 200,
-                height: 50,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(Icons.remove_circle),
-                    Text("0",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16)),
-                    Icon(Icons.add_circle),
-                  ],
-                ),
-              ),
-            ),
-          )
+          Counter(),
         ],
       ),
     );
